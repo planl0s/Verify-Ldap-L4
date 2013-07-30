@@ -2,8 +2,8 @@
 
 ---
 
-A simple role/permission authentication package for Laravel 4 that uses LDAP to do the Auth
-This package is a altered fork of the work of Toddish's Verify-L4 package which can be found at [github.com/Toddish/Verify-L4](github.com/Toddish/Verify-L4)
+A simple role/permission authentication package for Laravel 4 that uses LDAP to do the Auth.
+This package is a altered fork of the work of Toddish's Verify-L4 package which can be found at [github.com/Toddish/Verify-L4](https://github.com/Toddish/Verify-L4)
 
 ---
 
@@ -52,12 +52,12 @@ Then change your Auth driver to ``'verify-ldap-l4'`` in ``app/config/auth.php``:
 'driver' => 'verify-ldap-l4',
 ```
 
-You may also change the ```'model'``` value to ```'Djbarnes\Verify-Ldap-L4\Models\User'``` if you want to be able to load Verify's User model when using ```Auth::user()```.
+You may also change the ```'model'``` value to ```'Djbarnes\VerifyLdapL4\Models\User'``` if you want to be able to load Verify's User model when using ```Auth::user()```.
 
-Alternatively, you can simply create your own User model, and extend Verify-Ldap-L4's:
+Alternatively, you can simply create your own User model, and extend VerifyLdapL4's:
 
 ```php
-use Djbarnes\Verify-Ldap-L4\Models\User as VerifyLdapL4User;
+use Djbarnes\VerifyLdapL4\Models\User as VerifyLdapL4User;
 
 class User extends VerifyLdapL4User
 {
@@ -73,7 +73,7 @@ Run this on the command line from the root of your project:
 
 This will publish Verify's config to ``app/config/packages/djbarnes/verify-ldap-l4/``.
 
-You may also want to change the ``'db_prefix'`` value if you want a prefix on Verify's database tables.
+You may also want to change the ``'prefix'`` value if you want a prefix on VerifyLdapL4's database tables.
 
 Fill in the missing fields for the configuration file at the location mentioned above.
 ```php
@@ -127,7 +127,7 @@ $role->permissions()->sync(array($permission->id, $permission2->id));
 
 More information on relationships can be found in the [Laravel 4 Eloquent docs](http://four.laravel.com/docs/eloquent).
 
-Authentication is done by using the 'userdn' field of the User model, and the provided password to attempt an ldap bind to the directory server specified by the config file. With this auth package, Users, roles, and permissions are all stored in the database created by the migrations. Passwords are stored on the ldap server, and not in the database. When a user goes to authenticate, they are authenticated through the ldap server, but permissions and roles are pulled from the database.
+Authentication is done by using the 'userdn' field of the User model, and the provided password to attempt a tls encrypted ldap bind to the directory server specified by the config file. With this auth package, Users, roles, and permissions are all stored in the database created by the migrations. Passwords are stored on the ldap server, and not in the database. When a user goes to authenticate, they are authenticated through the ldap server, but permissions and roles are pulled from the database.
 
 ## Basic Examples
 
@@ -170,7 +170,7 @@ var_dump($user->level(5, '&lt;=')); // false
 ## Example of the Auth with Ldap
 
 The following example assumes that there is a user in the database to test with.
-A user can be added with the code listed above.
+A user can be added with the code listed above under 'create a new User'.
 
 ### View - login.blade.php
 ```php
@@ -218,6 +218,8 @@ A user can be added with the code listed above.
 Route::get('/','HomeController@showLogin');
 Route::post('/','HomeController@postLogin', array('before' => 'auth'));
 ```
+
+Naviagating to the root of the website with these three files changed will present the user with a login screen. Once the user provides credentials, the app will try to authenticate them. If the credentials are correct, a message saying "Logged In" will show up. Otherwise, a message saying "Not Authenticated" will show up.
 ---
 
 ## Documentation
