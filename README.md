@@ -7,6 +7,7 @@ This package is a altered fork of the work of Toddish's Verify-L4 package which 
 
 ---
 
+* TLS encryption for ldap binds
 * Role/permission based authentication
 * Exceptions for intelligent handling of errors
 * Configurable/extendable
