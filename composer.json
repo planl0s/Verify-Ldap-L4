@@ -1,0 +1,20 @@
+{
+    "name": "djbarnes/verify-ldap-l4",
+    "description": "",
+    "authors": [
+        {
+            "name": "David Barnes",
+            "email": "barnesdavidj@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.0.x"
+    },
+    "autoload": {
+        "psr-0": {
+            "Djbarnes\\VerifyLdapL4": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
