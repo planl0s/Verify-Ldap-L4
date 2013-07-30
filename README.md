@@ -220,7 +220,7 @@ Route::get('/','HomeController@showLogin');
 Route::post('/','HomeController@postLogin', array('before' => 'auth'));
 ```
 
-Naviagating to the root of the website with these three files changed will present the user with a login screen. Once the user provides credentials, the app will try to authenticate them. If the credentials are correct, a message saying "Logged In" will show up. Otherwise, a message saying "Not Authenticated" will show up.
+Naviagating to the root of the website with these three files changed will present the user with a login screen. Once the user provides credentials, the app will try to authenticate them. If the credentials are correct, a message saying "Logged In" will show up. Otherwise, a message saying "Not Authenticated" will show up, or one of the custome exceptions that are implemented will be thrown.
 
 ---
 
